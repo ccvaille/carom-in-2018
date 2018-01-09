@@ -21,17 +21,15 @@
 <body>
     <div id="tunnel"></div>
     <script>
-        console.log('div', document.getElementById("tunnel"));
+        // console.log('div', document.getElementById("tunnel"));
         document.getElementById("tunnel").animate([
             // keyframes
-            // { transform: 'translateY(0px)' },
-            // { transform: 'translateY(-300px)' }
             { transform: 'translate(-50%, -100%)', top: 0, opacity: 0 },
             { transform: 'translate(-50%, 50px)', top: 0, opacity: 1 }
         ], {
                 // timing options
                 duration: 1000,
-                // iterations: Infinity
+                fill: 'forwards'
             });
     </script>
 </body>
