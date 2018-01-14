@@ -32,14 +32,57 @@
     - 首选最小宽度
         - 中文最小宽度为 14px(每个汉字的宽度)
         - 英文为连续的英文字符单元决定，一般 - ? 空格 都会终止
-    - 最大宽度
-        - 
+    - 盒模型
+        - 内在盒子： content box, padding box, border box, margin box 
+        - **box-sizing:content-box 设置 border, padding 后，实际宽度超出设置宽度解决方法： 宽度分离： 父集固定宽度，子集设置 border 或者 padding 或者 margin**
+    - 100%
+        - 绝对定位元素: 宽高百分百相对于 padding box
+        - 非绝对定位元素: 宽高百分百相对于 content box
+    - 最大宽高/最小宽高
+        - 初始值
+            - max-width/max-height: none
+            - min-width/min-height: auto
+        - **max-width 会覆盖 width ,即使 width 设置 !important**
+        - **min-width 会覆盖 max-width**
+- 盒子
+    - 内容区域: 元素本身
+    - 内联盒子
+        - 内联盒子：<span>/<a>/<em>
+        - 匿名内联盒子: 没有标签包括起来的内联盒子
+    - 行框盒子: 每一行就是一个行框盒子，每个行框盒子又是由一个一个内联盒子组成
+    ```
+    // P 标签里面的内容即为行框盒子
+    <p>文本文本文本文本文本<em>em</em></p>
+    ```
+    - 包含盒子（上面的 p 标签就是一个包含盒子）
+- 盒模型
+    - 根据是否具有可替换内容
+        - 替换元素
+            - 内容的外观不受页面的 CSS 的影响，修改需要类似 appearance 属性
+            - 有默认尺寸
+        - 非替换元素
 - 常用代码块
 ```
+// 清除浮动
 .clear:after{
     content: '';
     display: table; // 也可以是 block
     clear: both;
+}
+
+// 让元素支持 height： 100%
+// A
+html,body {
+    height: 100%;
+}
+div {
+    height : 100%;
+}
+
+// B
+div {
+    position；absolute;
+    height: 100%;
 }
 ```
 
