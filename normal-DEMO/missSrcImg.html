@@ -22,6 +22,15 @@
             background-color: #f0f3f9;
             visibility: visible;
         }
+        img:after {
+            content: attr(alt);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            line-height: 30px;
+            /* background-color:  */
+        }
     </style>
 </head>
 <body>
@@ -29,7 +38,7 @@
         <h2>图片没加载好的，显示提示语言</h2>
         <ul>
             <li><img src="" alt=""></li>
-            <li><img src="http://hao.workec.com/img/logo.jpg" alt=""></li>
+            <li><img src="http://hao.workec.com/img/logo.jpg" alt="alt"></li>
         </ul>
     </div>
 </body>
