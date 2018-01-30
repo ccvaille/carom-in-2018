@@ -16,3 +16,16 @@ console.log(s);
 // 2
 // 3 
 ```
+2018-01-30 23:58:31
+- 逻辑运算符的优先顺序
+    - ！> && > ||
+- NaN !== NaN
+- 1 * undefined = NaN
+- 1 * null = = 
+- 转换成布尔值为 false 
+    - “”
+    - null
+    - undefined
+    - 0
+    - NaN
+    - false
