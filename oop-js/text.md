@@ -65,5 +65,35 @@ console.log(tom.height);
 tom.getFamilyName();
 tom.getSchoolName();
 ```
+- 继承（super）
+  - 使用 super() 呼叫父类的 constructor()
+  - 使用 super.functionName() 调用父类中的 static 方法
+  - ES6的继承机制，实质是先创造父类的实例对象 this（所以必须先调用 super 方法），然后再用子类的构造函数修改 this。
+```
+  class Father {
+  constructor(familyName){
+    this.familyName = familyName;
+  }
+  static sayHello() {
+    console.log('hello');
+  }
+}
+
+
+
+class Son extends Father {
+  constructor() {
+    super();
+    this.height = 170; // 没有上一行的 super() ，这里的 this 就不让用
+  }
+
+  static hello() {
+    super.sayHello(); // 调用父类的静态方法
+  }
+}
+
+let tom = new Son('Wang', 160);
+console.log(Son.hello());
+```
 ## code
 - [demo](./src/main.js)

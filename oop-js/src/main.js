@@ -36,7 +36,7 @@
 // let plzTalk = Person.sayName.bind(Person);
 // plzTalk();
 
-
+// 继承
 class A {
     constructor(name) {
         this.name = name || 'aa';
@@ -53,6 +53,6 @@ class B extends A {
 }
 
 let boy = new B;
-console.log(boy.name);
+console.log(boy);
 boy.output();
 boy.alertName();
