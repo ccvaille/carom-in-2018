@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+
+var hello = require('../index.js');
+hello();

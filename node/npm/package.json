@@ -1,0 +1,20 @@
+{
+  "name": "happy-coolfe",
+  "version": "1.1.0",
+  "description": "coolfe npm demo",
+  "main": "index.js",
+  "bin": {
+    "happy-coolfe": "bin/happy-coolfe"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "coolfe"
+  ],
+  "author": "coolfe",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.3.1"
+  }
+}
