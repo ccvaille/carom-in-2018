@@ -1,0 +1,11 @@
+- css-transition
+    - ease: 快到慢
+    - linear: 匀速
+    - ease-in: 加速
+    - ease-out: 减速
+    - [cubic-bezier](http://cubic-bezier.com/)
+    - 局限
+        - 需要事件触发
+        - 一次性，不能重复发生，除非重复触发
+        - 只有两个状态，不能定义中间状态
+        - 
