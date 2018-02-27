@@ -1,4 +1,5 @@
-# 已发布课程（2018.02.22）
+# 已发布课程（2018.02.24）
+- ~~用 gitbook 做笔记~~(0227)
 - 好奇图书馆
 - redux 实现 Todo App
 - VSCode 爱上 JS
@@ -10,7 +11,7 @@
 - 用 Gatsby 开发 SPA 架构的博客
 - Gulp-Flexbox 响应式网站课程
 - Meteor-React 小鸟课程
-- Happypeter 的摩登 JS 王国
+- ~~Happypeter 的摩登 JS 王国~~（0224）
 - Webpack-React 鼹鼠
 - Meteor-Express Ajax 方案对比
 - 驾驭命令行怪兽
