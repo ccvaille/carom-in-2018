@@ -10,6 +10,7 @@
     - 值类型和引用类型
         - 值类型变量包括 Boolean、String、Number、Undefined、Null[按值传递]
         - 引用类型包括了 Object 类的所有，如 Date、Array、Function[按共享传递]
+        - 按值传递的类型，复制一份存入栈内存，这类类型一般不占用太多内存，而且按值传递保证了其访问速度。按共享传递的类型，是复制其引用，而不是整个复制其值（C 语言中的指针），保证过大的对象等不会因为不停复制内容而造成内存的浪费
     - JS 的数据类型的判断（typeof || instanceof: 用于实例和构造函数的对应）
 ```js
     typeof null // object
@@ -17,6 +18,15 @@
     typeof Symbol() // symbol
     typeof function(){return a} // function
     [1, 2] instanceof Array // true
+```
+```js
+// 引用类型
+var a = {x: 10, y: 20}
+var b = a
+b.x = 100
+b.y = 200
+console.log(a)  // {x: 100, y: 200}
+console.log(b)  // {x: 100, y: 200}
 ```
 ```js
 var obj = {
@@ -27,7 +37,22 @@ var a = obj.a
 var b = obj.b
 a = 2
 b.push(4)
-console.log(obj, a, b)// {1a:1,b:[1,2,3.4]} 2 [1,2,3,4]
+console.log(obj, a, b)// {a:1,b:[1,2,3.4]} 2 [1,2,3,4]
+```
+```js
+// test
+function foo(a){
+    a = a * 10;
+}
+function bar(b){
+    b.value = 'new';
+}
+var a = 1;
+var b = {value: 'old'};
+foo(a);
+bar(b);
+console.log(a); // 1
+console.log(b); // value: new
 ```
     
 - 原型与原型链（继承）
