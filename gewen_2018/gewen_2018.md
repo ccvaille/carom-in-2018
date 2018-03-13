@@ -80,15 +80,15 @@ f.alertName() // zhangsan
     - this
     - 闭包是什么
 ```js
-// 变量提升
-console.log(a)  // undefined
-var a = 100
+// 变量提升（函数和 var 变量才会变量提升）
+console.log(a)；  // undefined
+var a = 100；
 
-fn('zhangsan')  // 'zhangsan' 20
+fn('zhangsan')； // 'zhangsan' 20
 function fn(name) {
-    age = 20
-    console.log(name, age)
-    var age
+    age = 20；
+    console.log(name, age)；
+    var age；
 }
 
 console.log(b); // 这里报错
