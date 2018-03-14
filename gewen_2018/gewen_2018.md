@@ -74,10 +74,15 @@ f.printName = function () {
 f.printName() // zhangsan
 f.alertName() // zhangsan
 ```
+    - 判断这个属性是不是对象本身的属性（ hasOwnProperty ）
 - 作用域和闭包
     - 执行上下文
         - 变量提升
     - this
+        - 函数调用： 全局对象 Global
+        - 作为对象方法调用： 上一级对象
+        - 构造函数调用： 新对象
+        - apply(): 第一个参数
     - 闭包是什么
 ```js
 // 变量提升（函数和 var 变量才会变量提升）
