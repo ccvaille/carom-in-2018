@@ -62,10 +62,50 @@ console.log(b); // value: new
         - 所有的函数，都有一个 prototype 属性，属性值也是一个普通的对象
         - 所有的引用类型（数组、对象、函数），__proto__ 属性值指向它的构造函数的prototype属性值
     - 继承写法
+    - 原型和原型链（原型链中的 this 指向当前触发事件执行的对象）
+```js
+// 构造函数
+function Foo(name, age) {
+    this.name = name
+}
+Foo.prototype.alertName = function () {
+    alert(this.name)
+}
+// 创建示例
+var f = new Foo('zhangsan')
+f.printName = function () {
+    console.log(this.name)
+}
+// 测试
+f.printName() // zhangsan
+f.alertName() // zhangsan
+```
+    - 判断这个属性是不是对象本身的属性（ hasOwnProperty ）
 - 作用域和闭包
     - 执行上下文
+        - 变量提升
     - this
+        - 函数调用： 全局对象 Global
+        - 作为对象方法调用： 上一级对象
+        - 构造函数调用： 新对象
+        - apply(): 第一个参数
     - 闭包是什么
+```js
+// 变量提升（函数和 var 变量才会变量提升）
+console.log(a)；  // undefined
+var a = 100；
+
+fn('zhangsan')； // 'zhangsan' 20
+function fn(name) {
+    age = 20；
+    console.log(name, age)；
+    var age；
+}
+
+console.log(b); // 这里报错
+// Uncaught ReferenceError: b is not defined
+b = 100;
+```
 - 异步
     - 同步 vs 异步
     - 异步和单线程
