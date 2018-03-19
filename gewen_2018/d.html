@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 闭包
+        // (function () {
+        //     var i = 0,
+        //         arr = [];
+        //     for (i; i < 3; i++) {
+        //         arr.push(function (num) {
+        //             return function() {
+        //                 console.log(num);
+        //             }
+        //         }(i));
+        //     }
+        //     arr[0]();
+        //     arr[1]();
+        //     arr[2]();
+        // })();
+
+        // 要一个Counter构造函数 每次实例化实例的时候 实现count属性递增
+        function Count() {
+            var count = 0;
+            Count.a++;
+            console.log(Count.a);
+        }
+        Count.a = 0;
+        var a = new Count();
+        var b = new Count();
+        var c = new Count();
+
+        function Count1() {
+            return function(){
+                var count = 0;
+                return function () {
+                    this.count = count++;
+                    console.log(count);
+                }
+            }()
+        }
+        var a = new Count1();
+        var b = new Count1();
+        var c = new Count1();
+
+    </script>
+</body>
+
+</html>
