@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // break :立即退出循环，强制继续执行循环后面的语句
+        // continue: 立即退出内循环，执行外循环
+        var num = 0;
+        for(var i=1; i<10;i++) {
+            console.log(i,'i')
+            if(i%5==0) {
+                break;
+            }
+            num++;
+            console.log(num,'num')
+        }
+        console.log(num);
+    </script>
+</body>
+</html>
