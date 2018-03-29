@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>likeButton</title>
+</head>
+<body>
+    <div class='wrapper'></div>
+    <script>
+        class LikeButton {
+            render () {
+                return `
+                    <button>
+                        <span> 赞</span>
+                        <span>👍</span>
+                    </button>
+                `
+            }
+        }
+        const wrapper = document.querySelector('.wrapper');
+        const likeButton = new LikeButton();
+        wrapper.innerHTML = likeButton.render();
+        const likeButton2 = new LikeButton();
+        wrapper.innerHTML += likeButton2.render();
+    </script>
+</body>
+</html>
