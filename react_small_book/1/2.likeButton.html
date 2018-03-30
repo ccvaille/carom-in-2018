@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>likeButton</title>
+</head>
+<body>
+    <div class="wrapper"></div>
+    <script>
+        const createDom = (domString) => {
+            const div = document.createElement('div');
+            div.innerHTML = domString;
+            return div;
+        }
+        class LikeButton {
+            render(){
+                this.el = createDom(`
+                    <button>
+                        <span>赞</span>
+                        <span>👍</span>
+                    </button>
+                `);
+                this.el.addEventListener('click', () => {
+                    console.log('click')
+                },false);
+                return this.el;
+            }
+        }
+
+        const wrapper = document.querySelector('.wrapper');
+        const likeButton1 = new LikeButton();
+        wrapper.appendChild(likeButton1.render());
+
+        const likeButton2 = new LikeButton();
+        wrapper.appendChild(likeButton2.render());
+    </script>
+</body>
+</html>
