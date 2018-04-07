@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>cssAttr_aria-label(20180407)</title>
+    <style>
+        .tooltip {
+            position: relative;
+            padding-top: 200px;
+        }
+
+        .tooltip:hover::before,
+        .tooltip:hover::after {
+            display: block;
+        }
+
+        .tooltip::before {
+            display: none;
+            position: absolute;
+            width: 0;
+            height: 0;
+            content: '';
+            border: 5px solid transparent;
+            border-top-color: rgba(0, 0, 0, .7);
+            pointer-events: none;
+            top: 190px;
+            left: 5px;
+        }
+
+        .tooltip::after {
+            display: none;
+            position: absolute;
+            padding: 10px;
+            border-radius: 3px;
+            background: #000;
+            color: #fff;
+            content: attr(aria-label);
+            pointer-events: none;
+            top: 149px;
+            left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tooltip" aria-label="This is a happy day.">😊</div>
+</body>
+
+</html>
