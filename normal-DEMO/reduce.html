@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>reduce(20180409)</title>
+</head>
+
+<body>
+    <script>
+        var constructicons = [{
+                name: 'Scrapper',
+                form: 'Freightliner Truck',
+                team: 'Decepticon',
+                bodyPart: 'rightLeg'
+            },
+            {
+                name: 'Hook',
+                form: 'Mobile Crane',
+                team: 'Decepticon',
+                bodyPart: 'upperTorso'
+            },
+            {
+                name: 'Bonecrusher',
+                form: 'Bulldozer',
+                team: 'Decepticon',
+                bodyPart: 'leftArm'
+            },
+            {
+                name: 'Scavenger',
+                form: 'Excavator',
+                team: 'Decepticon',
+                bodyPart: 'rightArm'
+            },
+            {
+                name: 'Mixmaster',
+                form: 'Concrete Mixer',
+                team: 'Decepticon',
+                bodyPart: 'leftLeg'
+            },
+            {
+                name: 'Long Haul',
+                form: 'Dump Truck',
+                team: 'Decepticon',
+                bodyPart: 'lowerTorso'
+            }
+        ];
+
+        function assemble(combiner, transformer) {
+            //每次遍历都会将当前的变形金刚（transformer）的名字加入到组合器（combiner）的form中去。
+            combiner.form[transformer.bodyPart] = transformer.name;
+            console.log(combiner,'kdjlkal',transformer)
+            return combiner;
+        }
+        var devastator = constructicons.reduce(assemble, {
+            name: 'Devastator',
+            team: 'Decepticon',
+            form: {}
+        });
+
+        console.log(devastator)
+        /*
+        devastator == {
+          name: ‘Devastator’,
+          team: ‘Decepticon’,
+          form: {
+            leftArm: "Bonecrusher"
+            leftLeg: "Mixmaster"
+            lowerTorso: "Long Haul"
+            rightArm: "Scavenger"
+            rightLeg: "Scrapper"
+            upperTorso: "Hook"
+          }
+        }
+        */
+    </script>
+</body>
+
+</html>
