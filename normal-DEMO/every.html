@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>every(20180408)</title>
+</head>
+
+<body>
+    <script>
+        var array = [1, 2, 3, 4, 5, 11, 12, 13, 14, 15];
+        var a = [12, 13, 14, 15];
+        function checkNum(num) {
+            return num > 10;
+        }
+        document.write('[1,2,3,4,5,11,12,13,14,15]数组内是否每个都大于十： ' + array.every(checkNum) + '<br/ >');
+        document.write('[12, 13, 14, 15]数组内是否每个都大于十： ' + a.every(checkNum))
+    </script>
+</body>
+
+</html>
