@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ms_判断子集</title>
+</head>
+<body>
+     <script>
+        //  两个顺序排列的数组 A 和 B, 数组成员均为数字，求 B 数组是否为 A 数组的子集。
+         var a = [1,2,3];
+         var b = [1,2,1,2,4];
+         console.log(b.every(function(val){return a.indexOf(val) >= 0 }))
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ms_继承(20180423)</title>
+</head>
+<body>
+    <script>
+        // es5 实现
+        // 一个类 P，包含成员变量 a, b,成员函数 sum， sum 输出 a + b, a,b 默认为 0，
+        // 一个类 M, 继承自 P, 在 P 的基础上增加成员变量 c， 成员函数 sum 输出 a + b + c;
+        function P(a,b) {
+            this.a = a ? a : 0 ;
+            this.b = b ? b : 0;
+        }
+        P.prototype = {
+            constructor: P,
+            sum: function() {
+                return this.a + this.b;
+            }
+        }
+
+        function M(c) {
+            this.c = c;
+        }
+
+        M.prototype = new P();
+
+        M.prototype.sum = function() {
+            return this.a + this.b + this.c;
+        }
+
+        var c = new M(4);
+        
+        console.log(c.sum())
+    </script>
+</body>
+</html>
