@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ms_argument(20180424)</title>
+</head>
+<body>
+    <script>
+        // define
+        (function(window) {
+            function fn(str) {
+                this.str = str;
+            }
+            fn.prototype.format = function(){
+                var arg = arguments;
+                return this.str.replace(/\{\d\}/, function(a,b) {
+                    return arg[b] || '';
+                });
+            };
+            window.fn = fn;
+        })(window);
+
+        // use
+        (function(){
+            var t = new fn('<p><a href="{0}">{1}</a><span>{2}</span></p>');
+            console.log(t.format('http://www.coolfe.com','coolfe','welcome'))
+        })()
+    </script>
+</body>
+</html>
