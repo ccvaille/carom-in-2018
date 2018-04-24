@@ -10,8 +10,16 @@
      <script>
         //  两个顺序排列的数组 A 和 B, 数组成员均为数字，求 B 数组是否为 A 数组的子集。
          var a = [1,2,3];
-         var b = [1,2,1,2,4];
-         console.log(b.every(function(val){return a.indexOf(val) >= 0 }))
+         var b = [1,2,4];
+         function sub(a,b) {
+             if(b.length > a.length ) {
+                 console.log('不是子集')
+                 return false;
+             } else {
+                 console.log(b.every(function (val) { return a.indexOf(val) >= 0 }));
+             }
+         }
+         sub(a,b)
     </script>
 </body>
 </html>
