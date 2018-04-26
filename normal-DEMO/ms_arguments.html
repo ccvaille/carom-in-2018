@@ -15,7 +15,12 @@
             }
             fn.prototype.format = function(){
                 var arg = arguments;
-                return this.str.replace(/\{\d\}/, function(a,b) {
+                return this.str.replace(/\{(\d)\}/g, function(a,b,c,d) {
+                    // a 表示 匹配的子串
+                    // b 表示 匹配到的字符创
+                    // 匹配到的字符串在原字符串中的偏移
+                    // 被匹配的原字符串
+                    console.log(a,b,c,d);
                     return arg[b] || '';
                 });
             };
