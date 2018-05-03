@@ -1,0 +1,16 @@
+## http://cssgridgarden.com/#zh-cn
+- grid-column-start: 指定每个网格的起始位置
+- grid-column-end:  指定每个网格的最终位置
+ - 正数： 从左到右
+ - 负数： 从右到左（-1 为右边第一列）
+ - span: 指定你所要跨越的宽度
+- grid-column: `<grid-column-start>` / `<grid-column-end>`
+- grid-row: `<grid-row-start>` / `<grid-row-end>`
+- grid-area: `<grid-row-start>` / `<grid-column-start>` /  `<grid-row-end>` / `<grid-column-end>`
+- order: 设置层叠
+- grid-template-columns: 指定每个网格列的宽度
+    - `grid-template-columns: repeat(2, 50%)`
+    - fr 单位
+        - `grid-template-columns: 1fr 5fr`
+- grid-template-rows: 指定每个网格行的宽度
+- grid-template: `<grid-template-rows>` / `<grid-template-columns>`
