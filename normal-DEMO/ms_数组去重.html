@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ms_数组去重（20180507）</title>
+</head>
+<body>
+    <script>
+        function unique(array) {
+            var ret = [];
+            for(let i = 0; i < array.length; i++) {
+                const item = array[i];
+                if(ret.indexOf(item) === -1) {
+                    ret.push(item);
+                }
+            }
+            console.log(ret);
+            return ret;
+        }
+        const arr = ['a', 'b', 'c', '1', 0, 'c', 1, '', 1, 0];
+        unique(arr); //=> ["a", "b", "c", "1", 0, 1, ""]
+    </script>
+</body>
+</html>

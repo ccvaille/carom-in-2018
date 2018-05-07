@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ms_数组去重_es6（20180507）</title>
+</head>
+<body>
+    <script>
+        const arr = ['a', 'b', 'c', '1', 0, 'c', 1, '', 1, 0];
+        function unique_es6(array) {
+            console.log(Array.from(new Set(array)));
+            return Array.from(new Set(array))    
+        }
+        unique_es6(arr); //=> ["a", "b", "c", "1", 0, 1, ""]
+    </script>
+</body>
+</html>
