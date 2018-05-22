@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>arrow_function(20180522)</title>
+</head>
+
+<body>
+    <script>
+        const names = ['will', 'jack', 'perter', 'steve', 'john', 'hugo'];
+        const newSet = names.map((name, index) => ({
+            id: index,
+            name: name
+        }))
+        .filter(man => man.id % 2 == 0) //=> {id: 0, name: "will"} { id: 2, name: "perter" } { id: 4, name: "john" }
+        .map(man => [man.name]) //=>   ["will"] ["perter"] ["john"]
+        .reduce((a, b) => a.concat(b)); // => ["will", "perter", "john"]
+
+        console.log(newSet)
+    </script>
+</body>
+
+</html>
