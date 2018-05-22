@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>const_object(20180522)</title>
+</head>
+
+<body>
+    <script>
+        // Object.freeze() 能获得一个首层属性不可变的对象，可是首层属性中存在对象，默认首层以下的对象依然可以被改变
+        // const obj1 = Object.freeze({
+        //     a: {}
+        // })
+        // obj1.a.b = 3;
+        // console.log(obj1) //=> {a: {b: 3}}
+
+
+        Object.deepFreeze = function(obj) {
+            var propNames = Object.getOwnPropertyNames(obj);
+            propNames.forEach(function(name){
+                var prop = obj[name];
+                if(typeof prop == 'object' && prop !== null) {
+                    Object.deepFreeze(prop);
+                }
+            })
+            return Object.freeze(obj);
+        }
+
+        const obj3 = Object.deepFreeze({
+            a: {
+                b: 1,
+            }
+        })
+        obj3.a.b = 2;
+        console.log(obj3); //->{a: {b: 1}}
+    </script>
+</body>
+
+</html>

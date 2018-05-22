@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>for_of(20180522)</title>
+</head>
+
+<body>
+    <script>
+        const arr = [1, 2, 3];
+        for (const item of arr) {
+            console.log('item',item); //=> 1 2 3
+        }
+
+        const zoo = [
+            { name: 'nick', gender: 1, species: 'fox' },
+            { name: 'judy', gender: 0, species: 'bunny' }
+        ]
+        for(const {name, species} of zoo) {
+            console.log(`Hi, I am ${name}, and I am a ${species}`)
+        }
+    </script>
+</body>
+
+</html>

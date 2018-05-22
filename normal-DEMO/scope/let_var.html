@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>let_var</title>
+</head>
+
+<body>
+    <script>
+        const arr1 = [];
+        for (var i = 0; i < 3; i++) {
+            arr1.push(() => i)
+        }
+        const arr2 = arr1.map(x => x());
+        console.log('var', arr2) // 3 3 3
+
+        const arr3 = [];
+        for (let i = 0; i < 3; i++) {
+            arr3.push(() => i)
+        }
+        const arr4 = arr3.map(x => x());
+        console.log('let', arr4) // 0 1 2
+
+    </script>
+</body>
+
+</html>
