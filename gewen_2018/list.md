@@ -1,12 +1,16 @@
 # 原型链和继承
 ## 原型链
-每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针(constructor)，而实例都包含一个指向原型对象的内部指针([[prototype]])，所以，让原型对象等于另一个类型的实例，就构成了实例与原型的链条，这就是原型链
+- 每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针(constructor)，而实例都包含一个指向原型对象的内部指针([[prototype]])，所以，让原型对象等于另一个类型的实例，就构成了实例与原型的链条，这就是原型链
+- 当试图得到一个对象的某个属性时，如果这个对象本身没有这个属性，那么会去它的__proto__（即它的构造函数的prototype）中寻找
 
 ## 确定原型与实例的关系
 - instanceof 
     - `instance instanceof Father`
 - isPrototypeOf()
     - `Father.prototype.isPrototypeOf(instance)`
+
+## 确定属性是不是对象本身的属性
+- hasOwnProperty()
 
 ## 原型链的缺陷
 - 问题一: 当原型链中包含引用类型值的原型时,该引用类型值会被所有实例共享;
@@ -63,3 +67,15 @@ console.log(instance1.color); //=> ["red", "blue", "green"]
 instance1.sayName(); //'coolfe'
 instance1.sayAge(); // 25
 ```
+
+## new 运算符
+```js
+var obj  = {};
+obj.__proto__ = F.prototype;
+F.call(obj);
+```
+
+## 原型链中 this
+- 只有在函数执行的时候， this 才被绑定
+
+# 作用域和闭包
