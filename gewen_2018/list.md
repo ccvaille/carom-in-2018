@@ -67,7 +67,29 @@ console.log(instance1.color); //=> ["red", "blue", "green"]
 instance1.sayName(); //'coolfe'
 instance1.sayAge(); // 25
 ```
+- ES6 
+```js
+class P {
+    constructor(x,y) {
+        this.x = x;
+        this.y = y;
+    }
+    sum() {
+        console.log(this.x + this.y)
+    }
+}
 
+class M extends P {
+    constructor(x,y,z) {
+        super(x,y);
+        this.z = z;
+    }
+    sum() {
+        console.log(this.x + this.y + this.z)        
+    }
+}
+new M(1,2,3).sum() // => 6;
+```
 ## new 运算符
 ```js
 var obj  = {};
@@ -98,8 +120,9 @@ console.log(b); // 这里报错
 b = 100;
 ```
 ## this
-- this的指向在函数定义时无法确定，只有在函数才能确定this的最终指向，即调用它的对象
-- 作为构造函数执行
+- this 的指向在函数定义时无法确定，只有在函数才能确定 this 的最终指向，即调用它的对象
+- 严格模式下 this 默认指向不是 window ，而是 undefined
+### 作为构造函数执行
 ```js
 // 构造函数如果返回一个对象，那么this指向就是这个对象，如果返回的不是对象，则还是指向构造函数生成的对象，特殊情况 null 虽然也是对象，但是返回 null 的话不会改变 this 指向;
 function Fn() {
@@ -124,7 +147,7 @@ function Fn() {
     return function(){}；
 }
 var fn = new Fn();
-console.log(fn.name); // 
+console.log(fn.name); // 因为是匿名函数，所以返回  ’’
 
 ---
 function Fn() {
@@ -132,18 +155,18 @@ function Fn() {
     return 1；
 }
 var fn = new Fn();
-console.log(fn.name); 
+console.log(fn.name); //=> 'coolfe'
 
 ---
 function Fn() {
     this.name = 'coolfe';
-    return null；
+    return null;
 }
 var fn = new Fn();
-console.log(fn.name); 
+console.log(fn.name); // => 'coolfe'
 
 ```
-- 作为对象属性执行
+### 作为对象属性执行
 ```js
 var a = {
     name: 'A',
@@ -153,7 +176,7 @@ var a = {
 }
 a.fn();  // this === a
 ```
-- 作为普通函数执行
+### 作为普通函数执行
 ```js
 var a = {
     name: 'A',
@@ -164,7 +187,7 @@ var a = {
 var b = a.fn;
 b(); // this === window
 ```
-- call、apply、bind 
+### call、apply、bind 
 ```js
 var a = {
     name: 'A',
