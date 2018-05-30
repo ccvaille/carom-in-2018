@@ -1,3 +1,17 @@
+# 数据类型
+- Boolean
+- String
+- Number
+- Undefined
+- Null
+- Symbol
+- Object
+
+## 怎么判断数组或对象
+- Object.prototype.toString.call()
+- Array.isArray()
+
+
 # 原型链和继承
 ## 原型链
 - 每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针(constructor)，而实例都包含一个指向原型对象的内部指针([[prototype]])，所以，让原型对象等于另一个类型的实例，就构成了实例与原型的链条，这就是原型链
@@ -196,6 +210,31 @@ var a = {
     }
 }
 a.fn.call({name: 'B'}); // this === {name: 'B'}
+```
+
+#### 自己实现 bind()
+```js
+var a = {
+    name: 'coolfe',
+    sayName: function(x, y) {
+        console.log(this.name);
+        console.log(x);
+        console.log(y);
+    }
+}
+function bind(fn, context) {
+    return function() {
+        fn.apply(context, arguments);
+    }
+}
+
+var b = bind(a.sayName, a);
+b(1,2);
+
+// => 'coolfe'
+// => '1'
+// => '2'
+
 ```
 
 ## 作用域
