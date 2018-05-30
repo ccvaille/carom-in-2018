@@ -49,6 +49,7 @@ console.log(instance.color); //=> ["red", "blue", "green", "black"]
 var instance1 = new Son();
 console.log(instance1.color); //=> ["red", "blue", "green"]
 ```
+
 - 组合继承（伪经典继承）
     - 基本思路: 使用原型链实现对原型属性和方法的继承,通过借用构造函数来实现对实例属性的继承.
 ```js
