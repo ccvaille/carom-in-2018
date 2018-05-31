@@ -30,6 +30,25 @@
 - 问题一: 当原型链中包含引用类型值的原型时,该引用类型值会被所有实例共享;
 - 问题二: 在创建子类型(例如创建Son)的实例时,不能向超类型(例如Father)的构造函数中传递参数.
 - 有鉴于此, 实践中很少会单独使用原型链
+```js
+// 问题一: 当原型链中包含引用类型值的原型时,该引用类型值会被所有实例共享;
+function Father() {
+    this.colors = ['red', 'blue'];
+}
+function Son() {}
+
+Son.prototype = new Father();
+
+var instance1 = new Son();
+instance1.colors.push('black');
+console.log(instance1.colors);
+// => ["red", "blue", "black"]
+
+var instance2 = new Son();
+console.log(instance2.colors);
+// => ["red", "blue", "black"]
+
+```
 
 ## 继承
 - 借助构造函数（经典继承）
@@ -93,6 +112,12 @@ instance1.sayName();
 //'coolfe'
 instance1.sayAge(); 
 // 25
+
+
+var i2 = new Son('0',0);
+console.log(i2.color);
+i2.sayName();
+i2.sayAge();
 ```
 
 - ES6 
@@ -124,6 +149,8 @@ new M(1,2,3).sum()
 ## new 运算符
 
 ```js
+var obj = new F();
+
 var obj  = {};
 obj.__proto__ = F.prototype;
 F.call(obj);
