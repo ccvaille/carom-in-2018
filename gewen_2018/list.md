@@ -146,8 +146,6 @@ function Fn() {
 var fn = new Fn();
 console.log(fn.name); // 'coolfe'
 
----
-
 function Fn() {
     this.name = 'coolfe';
     return {};
@@ -155,7 +153,6 @@ function Fn() {
 var fn = new Fn();
 console.log(fn.name); // 'undefined'
 
---- 
 
 function Fn() {
     this.name = 'coolfe';
@@ -164,7 +161,6 @@ function Fn() {
 var fn = new Fn();
 console.log(fn.name); // 因为是匿名函数，所以返回  ’’
 
----
 function Fn() {
     this.name = 'coolfe';
     return 1；
@@ -172,7 +168,7 @@ function Fn() {
 var fn = new Fn();
 console.log(fn.name); //=> 'coolfe'
 
----
+
 function Fn() {
     this.name = 'coolfe';
     return null;
