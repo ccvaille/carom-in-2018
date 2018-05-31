@@ -454,6 +454,7 @@ console.log(4);
     - 性能优化，虚拟 DOM
     - 只负责  View 层，数据流由其他框架做
 - 声明
+
 ```js
 // react.component
 import React from 'react';
@@ -485,6 +486,7 @@ const Todo = (props) => (
         - 取消网络请求
         - 清楚无效计时器
 - setState()
+
 ```js
 this.setState((prevState, props) => {
   return {counter: prevState.counter + props.step};
@@ -511,12 +513,14 @@ this.setState((prevState, props) => {
     - 3）loaders：webpack本身只理解js，但是在webpack概念里，所有文件即模块，loaders可以让webpack去理解和处理非js的文件，比如CSS/LESS，字体，图片，html等，test属性标记哪些文件应该被转换，use属性表示转换时使用哪个loader
     - 4）plugins：处理一个更广的任务，require 对应插件，然后 new 一个实例即可
 - 多入口配置
+
 ```js
 entry: {
     pageone: './src/pageOne/index.js',
     pagetwo: './src/pageTwo/index.js'
 }
 ```
+
 - 常用插件
     - extract-text-webpack-plugins:抽离 CSS 样式，防止将样式打包在 js 里引起样式加载错乱
     - webpack-parallel-uglify-plugin：提升打包性能
@@ -525,6 +529,7 @@ entry: {
     - open-brower-webpack-plugin:自动打开浏览器
 - 异步按需加载
 - `require.ensure(dependencies, callback, chunkName)`
+
 ```js
 output: {
     path: path.join(__dirname, '../dist'),
