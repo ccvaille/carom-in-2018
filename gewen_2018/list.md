@@ -96,6 +96,7 @@ instance1.sayAge();
 ```
 
 - ES6 
+
 ```js
 class P {
     constructor(x,y) {
@@ -380,7 +381,7 @@ console.log(300)
     - 微任务
         - new Promise()
         - process.nextTick
-        
+
 ```js
 console.log('1');
 
