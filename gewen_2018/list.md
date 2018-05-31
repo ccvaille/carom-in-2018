@@ -33,7 +33,7 @@
 
 ## 继承
 - 借助构造函数（经典继承）
-    - 基本思想:即在子类型构造函数的内部调用超类型构造函数.
+    - 基本思想:即在子类型构造函数的内部调用超类型构造函数。
 ```js
 function Father(name) {
     this.color = ['red', 'blue', 'green'];
@@ -51,7 +51,7 @@ console.log(instance1.color); //=> ["red", "blue", "green"]
 ```
 
 - 组合继承（伪经典继承）
-    - 基本思路: 使用原型链实现对原型属性和方法的继承,通过借用构造函数来实现对实例属性的继承.
+    - 基本思路: 使用原型链实现对原型属性和方法的继承,通过借用构造函数来实现对实例属性的继承。
 ```js
 function Father(name) {
     this.name = name;
@@ -291,6 +291,37 @@ var f1 = F1();
 F2(F1);
 ```
 
+
+### for 循环间隔 500 毫秒输出
+```js
+// 闭包
+for(var i = 0; i < 5; i++) {
+    setTimeout(function(a) {
+        console.log(a);
+    }(i))
+}
+
+--- 
+// let
+for(let i = 0; i < 5; i++) {
+    setTimeout(function() {
+        console.log(i);
+    })
+}
+
+----
+// sleep
+async function fn(){
+    for(let i = 0; i < 5; i++) {
+        await new Promise((resolve, reject) => {
+            setTimeout(resolve, 500)
+        });
+        console.log(i);
+    }
+}
+fn();
+```
+
 # 同步、异步与事件循环
 - JS 是单线程运行，所以需要异步
 - 异步应用场景
@@ -312,3 +343,189 @@ setTimeout(function () {
 }, 1000)
 console.log(300)
 ```
+## 事件循环
+- JS 引擎遇到一个异步事件后并不会一直等待返回结果，而是把事件挂起，继续执行其他任务。当异步事件返回结果后， JS 会把事件加入事件队列里面，同步任务都在主线程上执行，形成一个执行栈，等主线程处于闲置时，主线程回去查找事件队列是否有任务，有的话会把它取出放进执行栈，如此反复形成循环。
+
+- 首先判断是同步任务还是异步任务，同步任务直接进入主线程，异步任务会先进入 Event Table 并注册回调函数，回调函数执行好了，回调函数会进入 Event Queue 里面，然后 事件循坏会一直循坏判断 Stack 是否为空，为空的话 Event Queue 里面的函数会依次到 Stack 执行
+
+- 不同的异步任务被分为两类：微任务（micro task）和宏任务（macro task）
+    - 事件循环的顺序，决定js代码的执行顺序。进入整体代码(宏任务)后，开始第一次循环。接着执行所有的微任务。然后再次从宏任务开始，找到其中一个任务队列执行完毕，再执行所有的微任务
+    - 同一次事件循环中，微任务永远在宏任务之前执行
+    - 宏任务
+        - setInterval()
+        - setTimeout()
+    - 微任务
+        - new Promise()
+        - process.nextTick
+```js
+console.log('1');
+
+setTimeout(function() {
+    console.log('2');
+    process.nextTick(function() {
+        console.log('3');
+    })
+    new Promise(function(resolve) {
+        console.log('4');
+        resolve();
+    }).then(function() {
+        console.log('5')
+    })
+})
+process.nextTick(function() {
+    console.log('6');
+})
+new Promise(function(resolve) {
+    console.log('7');
+    resolve();
+}).then(function() {
+    console.log('8')
+})
+
+setTimeout(function() {
+    console.log('9');
+    process.nextTick(function() {
+        console.log('10');
+    })
+    new Promise(function(resolve) {
+        console.log('11');
+        resolve();
+    }).then(function() {
+        console.log('12')
+    })
+})
+// 1，7，6，8，2，4，3，5，9，11，10，12
+```
+```js
+const first = () => (new Promise((resovle,reject)=>{
+    console.log(3);
+    let p = new Promise((resovle, reject)=>{
+         console.log(7);
+        setTimeout(()=>{
+           console.log(5);
+           resovle(6); 
+        },0)
+        resovle(1);
+    }); 
+    resovle(2);
+    p.then((arg)=>{
+        console.log(arg);
+    });
+
+}));
+
+first().then((arg)=>{
+    console.log(arg);
+});
+console.log(4);
+//=> 3, 7, 4, 1, 2, 5
+```
+# React 和 Redux
+## React
+- 优点
+    - 隔绝了 DOM 操作
+    - 模块化，组件化
+    - 性能优化，虚拟 DOM
+    - 只负责  View 层，数据流由其他框架做
+- 声明
+```js
+// react.component
+import React from 'react';
+class Crowd extends React.Component {
+    componentDidMount() {
+    }
+    render(){}
+}
+// 无状态组件
+const Todo = (props) => (
+    <li
+        onClick= {props.onClick}
+    >
+     {props.text}
+    </li>
+)
+```
+- 生命周期
+    - getDefaultProps()
+    - getInitialState()
+    - componentWillMount()
+        - 在这个方法中 setState 不会发生重新渲染(re-render)
+    - render
+    - componentDidMount
+        - 真实 DOM 已经生成，可以对 DOM 进行操作
+    - componentWillReceiveProps(nextProps）(Props 改变)
+    - shouldComponentUpdate(nextProps, nextState)（state）改变 => componentWillUpdate(nextProps, nextState) => render => componentDidUpdate(prevProps, prevState)
+    - componentWillUnmount（卸载）
+        - 取消网络请求
+        - 清楚无效计时器
+- setState()
+```js
+this.setState((prevState, props) => {
+  return {counter: prevState.counter + props.step};
+});
+```
+- vdom diff
+- 传统算法遍历树的子节点比较的复杂度是O(n³)，vdom diff使用下面的策略将其降为O(n)：
+    - 1）只比较同级节点，因为跨级的场景很少
+    - 2）同层节点的位置变换，对于不同层的节点，只有简单的创建和删除
+    - 3）列表使用 key 进行移位算法
+
+
+## Redux
+- Redux-thunk
+    - api
+        - Provider:使用 react 的 context 属性透传 props 下去
+        - connect：连接 component 和 store，把 store 写进 props 
+    -  可以让 action 先不返回 action 对象，而是返回一个函数，函数传递 dispatch 和getState 两个方法，然后在函数里 dispatch action，解决异步 action
+
+# Webpack
+- 核心概念
+    - 1）入口：模块依赖分析入口
+    - 2）出口：打包生成的bundles输出的目录及文件名
+    - 3）loaders：webpack本身只理解js，但是在webpack概念里，所有文件即模块，loaders可以让webpack去理解和处理非js的文件，比如CSS/LESS，字体，图片，html等，test属性标记哪些文件应该被转换，use属性表示转换时使用哪个loader
+    - 4）plugins：处理一个更广的任务，require 对应插件，然后 new 一个实例即可
+- 多入口配置
+```js
+entry: {
+    pageone: './src/pageOne/index.js',
+    pagetwo: './src/pageTwo/index.js'
+}
+```
+- 常用插件
+    - extract-text-webpack-plugins:抽离 CSS 样式，防止将样式打包在 js 里引起样式加载错乱
+    - webpack-parallel-uglify-plugin：提升打包性能
+    - string-replace-webpack-plugin: 将指定字符串替换为对应代码
+    - html-webpack-plugin: 用以生成模板
+    - open-brower-webpack-plugin:自动打开浏览器
+- 异步按需加载
+- `require.ensure(dependencies, callback, chunkName)`
+```js
+output: {
+    path: path.join(__dirname, '../dist'),
+    filename: '[name].js',
+    sourceMapFilename: '[file].map',
+    publicPath: '/static/',
+    //加这个！
+    chunkFilename: '[name].[chunkhash:5].chunk.js',
+}
+
+<Route
+    path='index'
+    getComponent={(location, cb) => {
+        require.ensure([], require => {
+            cb(null, require('components/Index').default);
+        }, 'index');
+    }} />
+```
+- [img](./clipboard.png)
+# Js 安全知识
+## CSRF
+- 跨站请求伪造
+- 登陆成功一个网站后，访问恶意页面后，页面发了一个恶意请求，浏览器会默认带登陆成功的 cookie 过去，就能完成攻击
+- 验证 Referer 字段
+- 添加 token
+- 添加验证码 
+
+## XSS
+- 跨站脚本攻击
+- 过滤特殊字符
