@@ -34,20 +34,24 @@
 ## 继承
 - 借助构造函数（经典继承）
 - 基本思想:即在子类型构造函数的内部调用超类型构造函数。
+
 ```js
 function Father(name) {
     this.color = ['red', 'blue', 'green'];
     this.name = name;
 }
 function Son() {
-    Father.call(this, 'coolfe'); //继承了Father,且向父类型传递参数
+    //继承了Father,且向父类型传递参数
+    Father.call(this, 'coolfe'); 
 }
 var instance = new Son();
 instance.color.push('black');
-console.log(instance.color); //=> ["red", "blue", "green", "black"]
+console.log(instance.color); 
+//=> ["red", "blue", "green", "black"]
 
 var instance1 = new Son();
-console.log(instance1.color); //=> ["red", "blue", "green"]
+console.log(instance1.color); 
+//=> ["red", "blue", "green"]
 ```
 
 - 组合继承（伪经典继承）
