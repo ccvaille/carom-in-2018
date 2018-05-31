@@ -56,7 +56,7 @@ console.log(instance1.color);
 
 - 组合继承（伪经典继承）
     - 基本思路: 使用原型链实现对原型属性和方法的继承,通过借用构造函数来实现对实例属性的继承。
-    
+
 ```js
 function Father(name) {
     this.name = name;
@@ -119,7 +119,9 @@ class M extends P {
 new M(1,2,3).sum() 
 // => 6;
 ```
+
 ## new 运算符
+
 ```js
 var obj  = {};
 obj.__proto__ = F.prototype;
