@@ -33,7 +33,7 @@
 
 ## 继承
 - 借助构造函数（经典继承）
-- 基本思想:即在子类型构造函数的内部调用超类型构造函数。
+    - 基本思想:即在子类型构造函数的内部调用超类型构造函数。
 
 ```js
 function Father(name) {
@@ -55,7 +55,7 @@ console.log(instance1.color);
 ```
 
 - 组合继承（伪经典继承）
-- 基本思路: 使用原型链实现对原型属性和方法的继承,通过借用构造函数来实现对实例属性的继承
+    - 基本思路: 使用原型链实现对原型属性和方法的继承,通过借用构造函数来实现对实例属性的继承
 ```js
 function Father(name) {
     this.name = name;
@@ -66,7 +66,8 @@ Father.prototype.sayName = function() {
 }
 
 function Son(name, age) {
-    Father.call(this, name); // 继承属性
+    // 继承属性
+    Father.call(this, name); 
     this.age = age;
 }
 // 继承方法
@@ -77,14 +78,20 @@ Son.prototype.sayAge = function() {
 
 var instance = new Son('louis', 5);
 instance.color.push('black');
-console.log(instance.color); //=> ["red", "blue", "green", "black"]
-instance.sayName(); // 'louis'
-instance.sayAge(); // 5
+console.log(instance.color); 
+//=> ["red", "blue", "green", "black"]
+instance.sayName(); 
+// 'louis'
+instance.sayAge(); 
+// 5
 
 var instance1 = new Son('coolfe', 25);
-console.log(instance1.color); //=> ["red", "blue", "green"]
-instance1.sayName(); //'coolfe'
-instance1.sayAge(); // 25
+console.log(instance1.color); 
+//=> ["red", "blue", "green"]
+instance1.sayName(); 
+//'coolfe'
+instance1.sayAge(); 
+// 25
 ```
 
 - ES6 
@@ -108,7 +115,8 @@ class M extends P {
         console.log(this.x + this.y + this.z)        
     }
 }
-new M(1,2,3).sum() // => 6;
+new M(1,2,3).sum() 
+// => 6;
 ```
 ## new 运算符
 ```js
@@ -125,19 +133,22 @@ F.call(obj);
 - 在一段 JS 脚本（即一个 `<script>` 标签中）执行之前，要先解析代码（所以说 JS 是解释执行的脚本语言），解析的时候会先创建一个 `全局执行上下文` 环境，先把代码中即将执行的（内部函数的不算，因为你不知道函数何时执行）`变量、函数声明`都拿出来。变量先暂时赋值为undefined，函数则先声明好可使用。这一步做完了，然后再开始正式执行程序。再次强调，这是在代码执行之前才开始的工作。
 - 下面代码为什么 a 是 undefined，而 b 却报错了，实际 JS 在代码执行之前，要「全文解析」，发现 var a，知道有个 a 的变量，存入了执行上下文，而 b 没有找到 var 关键字，这时候没有在执行上下文提前「占位」，所以代码执行的时候，提前报到的 a 是有记录的，只不过值暂时还没有赋值，即为 undefined，而 b 在执行上下文没有找到，自然会报错（没有找到 b 的引用）。
 ```js
-console.log(a)  // undefined
+console.log(a)  
+// undefined
 var a = 100
 
-fn('zhangsan')  // 'zhangsan' 20
+fn('zhangsan')  
+// 'zhangsan' 20
 function fn(name) {
     age = 20
     console.log(name, age)
     var age
 }
 
-console.log(b); // 这里报错
-// Uncaught ReferenceError: b is not defined
+console.log(b); 
+// 这里报错
 b = 100;
+// Uncaught ReferenceError: b is not defined
 ```
 ## this
 - this 的指向在函数定义时无法确定，只有在函数才能确定 this 的最终指向，即调用它的对象
@@ -149,14 +160,16 @@ function Fn() {
     this.name = 'coolfe';
 }
 var fn = new Fn();
-console.log(fn.name); // 'coolfe'
+console.log(fn.name); 
+// 'coolfe'
 
 function Fn() {
     this.name = 'coolfe';
     return {};
 }
 var fn = new Fn();
-console.log(fn.name); // 'undefined'
+console.log(fn.name); 
+// 'undefined'
 
 
 function Fn() {
@@ -164,14 +177,16 @@ function Fn() {
     return function(){}；
 }
 var fn = new Fn();
-console.log(fn.name); // 因为是匿名函数，所以返回  ’’
+console.log(fn.name); 
+// 因为是匿名函数，所以返回  ’’
 
 function Fn() {
     this.name = 'coolfe';
     return 1；
 }
 var fn = new Fn();
-console.log(fn.name); //=> 'coolfe'
+console.log(fn.name); 
+//=> 'coolfe'
 
 
 function Fn() {
@@ -179,7 +194,8 @@ function Fn() {
     return null;
 }
 var fn = new Fn();
-console.log(fn.name); // => 'coolfe'
+console.log(fn.name); 
+// => 'coolfe'
 
 ```
 ### 作为对象属性执行
@@ -190,7 +206,8 @@ var a = {
         console.log(this.name)
     }
 }
-a.fn();  // this === a
+a.fn();  
+// this === a
 ```
 ### 作为普通函数执行
 ```js
@@ -201,7 +218,8 @@ var a = {
     }
 }
 var b = a.fn;
-b(); // this === window
+b(); 
+// this === window
 ```
 ### call、apply、bind 
 ```js
@@ -211,7 +229,8 @@ var a = {
         console.log(this.name)
     }
 }
-a.fn.call({name: 'B'}); // this === {name: 'B'}
+a.fn.call({name: 'B'}); 
+// this === {name: 'B'}
 ```
 
 #### 自己实现 bind()
