@@ -33,7 +33,7 @@
 
 ## 继承
 - 借助构造函数（经典继承）
-    - 基本思想:即在子类型构造函数的内部调用超类型构造函数。
+- 基本思想:即在子类型构造函数的内部调用超类型构造函数。
 ```js
 function Father(name) {
     this.color = ['red', 'blue', 'green'];
@@ -51,7 +51,7 @@ console.log(instance1.color); //=> ["red", "blue", "green"]
 ```
 
 - 组合继承（伪经典继承）
-    - 基本思路: 使用原型链实现对原型属性和方法的继承,通过借用构造函数来实现对实例属性的继承。
+- 基本思路: 使用原型链实现对原型属性和方法的继承,通过借用构造函数来实现对实例属性的继承。
 ```js
 function Father(name) {
     this.name = name;
@@ -82,6 +82,7 @@ console.log(instance1.color); //=> ["red", "blue", "green"]
 instance1.sayName(); //'coolfe'
 instance1.sayAge(); // 25
 ```
+
 - ES6 
 ```js
 class P {
