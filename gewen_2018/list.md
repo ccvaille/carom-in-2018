@@ -274,8 +274,6 @@ var f1 = F1();
 var a = 200;
 f1(); //=> 100
 
-----
-
 // 函数作为参数传递
 function F1() {
     var a = 100;
@@ -291,7 +289,6 @@ var f1 = F1();
 F2(F1);
 ```
 
-
 ### for 循环间隔 500 毫秒输出
 ```js
 // 闭包
@@ -301,7 +298,6 @@ for(var i = 0; i < 5; i++) {
     }(i))
 }
 
---- 
 // let
 for(let i = 0; i < 5; i++) {
     setTimeout(function() {
@@ -309,7 +305,6 @@ for(let i = 0; i < 5; i++) {
     })
 }
 
-----
 // sleep
 async function fn(){
     for(let i = 0; i < 5; i++) {
@@ -334,7 +329,6 @@ console.log(100)
 alert(200)  // 1秒钟之后点击确认
 console.log(300)
 
---- 
 
 // 异步
 console.log(100)
@@ -517,7 +511,7 @@ output: {
         }, 'index');
     }} />
 ```
-- [img](./clipboard.png)
+
 # Js 安全知识
 ## CSRF
 - 跨站请求伪造
