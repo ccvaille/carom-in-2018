@@ -315,9 +315,15 @@ console.log(name)  // 报错，因为 let 定义的 name 是在 if 这个块级�
 
 ## 闭包
 > 有权访问另一个函数作用域中的变量的函数
+
 - 应用场景
     - 函数作为返回值
     - 函数作为参数传递
+- 优点
+    - 可以读取函数内部的变量
+    - 可以让局部变量保存在内存中，实现变量数据共享
+- 缺点
+    - 内存消耗大
 
 ```js
 // 函数作为返回值
@@ -516,6 +522,7 @@ const Todo = (props) => (
         - 清楚无效计时器
 - setState()
 
+
 ```js
 this.setState((prevState, props) => {
   return {counter: prevState.counter + props.step};
@@ -555,7 +562,10 @@ entry: {
     - webpack-parallel-uglify-plugin：提升打包性能
     - string-replace-webpack-plugin: 将指定字符串替换为对应代码
     - html-webpack-plugin: 用以生成模板
-    - open-brower-webpack-plugin:自动打开浏览器
+    - open-brower-webpack-plugin: 自动打开浏览器
+    - ParallelUglifyPlugin： 并行运行UglifyJS插件，这可以有效减少构建时间
+- 性能优化
+    - 'cache-loader'
 - 异步按需加载
 - `require.ensure(dependencies, callback, chunkName)`
 
@@ -589,3 +599,86 @@ output: {
 ## XSS
 - 跨站脚本攻击
 - 过滤特殊字符
+
+# 性能优化
+- content 方面
+    - 减少 HTTP请求：合并文件、CSS精灵、inline Image
+    - 非必须组件延迟加载
+    - 减少DOM元素数量
+    - 减少iframe数量
+- Server方面
+    - 使用CDN
+    - 添加Expires或者Cache-Control响应头
+    - 避免空src的img标签
+- css方面
+    - 将样式表放到页面顶部
+- Javascript方面
+    - 将脚本放到页面底部
+    - 将javascript和css从外部引入
+    - 压缩javascript和css
+    - 删除不需要的脚本
+    - 减少DOM访问
+    - 合理设计事件监听器
+
+# 从浏览器地址栏输入url到显示页面的步骤(以HTTP为例)
+- 在浏览器地址栏输入URL
+- 浏览器查看缓存，如果请求资源在缓存中并且新鲜，跳转到转码步骤
+    - 如果资源未缓存，发起新请求
+    - 如果已缓存，检验是否足够新鲜，足够新鲜直接提供给客户端，否则与服务器进行验证。
+    - 检验新鲜通常有两个HTTP头进行控制Expires和Cache-Control：
+        - HTTP1.0提供Expires，值为一个绝对时间表示缓存新鲜日期
+        - HTTP1.1增加了Cache-Control: max-age=,值为以秒为单位的最大新鲜时间
+- 浏览器解析URL获取协议，主机，端口，path
+- 浏览器组装一个HTTP（GET）请求报文
+- 浏览器获取主机ip地址，过程如下：
+    - 浏览器缓存
+    - 本机缓存
+    - hosts文件
+    - 路由器缓存
+    - ISP DNS缓存
+    - DNS递归查询（可能存在负载均衡导致每次IP不一样）
+- 打开一个socket与目标IP地址，端口建立TCP链接，三次握手如下：
+    - 客户端发送一个TCP的SYN=1，Seq=X的包到服务器端口
+    - 服务器发回SYN=1， ACK=X+1， Seq=Y的响应包
+    - 客户端发送ACK=Y+1， Seq=Z
+    - TCP链接建立后发送HTTP请求
+- TCP链接建立后发送HTTP请求
+- 服务器接受请求并解析，将请求转发到服务程序，如虚拟主机使用HTTP Host头部判断请求的服务程序
+- 服务器检查HTTP请求头是否包含缓存验证信息如果验证缓存新鲜，返回304等对应状态码
+- 处理程序读取完整请求并准备HTTP响应，可能需要查询数据库等操作
+- 服务器将响应报文通过TCP连接发送回浏览器
+- 浏览器接收HTTP响应，然后根据情况选择关闭TCP连接或者保留重用，关闭TCP连接的四次握手如下：
+    - 主动方发送Fin=1， Ack=Z， Seq= X报文
+    - 被动方发送ACK=X+1， Seq=Z报文
+    - 被动方发送Fin=1， ACK=X， Seq=Y报文
+    - 主动方发送ACK=Y， Seq=X报文
+- 浏览器检查响应状态吗：是否为1XX，3XX， 4XX， 5XX，这些情况处理与2XX不同
+- 如果资源可缓存，进行缓存
+- 对响应进行解码（例如gzip压缩）
+- 根据资源类型决定如何处理（假设资源为HTML文档）
+- 解析HTML文档，构件DOM树，下载资源，构造CSSOM树，执行js脚本，这些操作没有严格的先后顺序，以下分别解释
+- 构建DOM树：
+    - Tokenizing：根据HTML规范将字符流解析为标记
+    - Lexing：词法分析将标记转换为对象并定义属性和规则
+    - DOM construction：根据HTML标记关系将对象组成DOM树
+- 解析过程中遇到图片、样式表、js文件，启动下载
+- 构建CSSOM树：
+    - Tokenizing：字符流转换为标记流
+    - Node：根据标记创建节点
+    - CSSOM：节点创建CSSOM树
+- 根据DOM树和CSSOM树构建渲染树:
+    - 从DOM树的根节点遍历所有可见节点，不可见节点包括：1）script,meta这样本身不可见的标签。2)被css隐藏的节点，如display: none
+    - 对每一个可见节点，找到恰当的CSSOM规则并应用
+    - 发布可视节点的内容和计算样式
+- js解析如下：
+- 浏览器创建Document对象并解析HTML，将解析到的元素和文本节点添加到文档中，此时document.readystate为loading
+- HTML解析器遇到没有async和defer的script时，将他们添加到文档中，然后执行行内或外部脚本。这些脚本会同步执行，并且在脚本下载和执行时解析器会暂停。这样就可以用document.write()把文本插入到输入流中。同步脚本经常简单定义函数和注册事件处理程序，他们可以遍历和操作script和他们之前的文档内容
+- 当解析器遇到设置了async属性的script时，开始下载脚本并继续解析文档。脚本会在它下载完成后尽快执行，但是解析器不会停下来等它下载。异步脚本禁止使用document.write()，它们可以访问自己script和之前的文档元素
+- 当文档完成解析，document.readState变成interactive
+- 所有difer脚本会按照在文档出现的顺序执行，延迟脚本能访问完整文档树，禁止使用document.write()
+- 浏览器在Document对象上触发DOMContentLoaded事件
+- 此时文档完全解析完成，浏览器可能还在等待如图片等内容加载，等这些内容完成载入并且所有异步脚本完成载入和执行，document.readState变为complete,window触发load事件
+- 显示页面（HTML解析过程中会逐步显示页面）
+
+# 跨域
+现代浏览器可使用HTML5规范的CORS功能，只要目标服务器返回HTTP头部**Access-Control-Allow-Origin: ***即可像普通ajax一样访问跨域资源
