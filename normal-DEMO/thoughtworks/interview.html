@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ThoughtWorks(20180603)</title>
+</head>
+
+<body>
+    <script>
+        let initial = {
+            boxWidth: 0,
+            boxHeight: 0,
+            startX: 0,
+            startY: 0,
+            defaultDir: '',
+        }
+
+        // 示意方位
+        const N = 'n';
+        const E = 'e';
+        const S = 's';
+        const W = 'w';
+
+        // 计算方位旋转
+        const dir = {
+            n: {
+                L: 'w',
+                R: 'e'
+            },
+            s: {
+                L: 'e',
+                R: 'w'
+            },
+            e: {
+                L: 'n',
+                R: 's'
+            },
+            w: {
+                L: 's',
+                R: 'n'
+            }
+        }
+
+        // 获取当前最大方位
+        function getPosition(x, y) {
+            initial.boxWidth = x;
+            initial.boxHeight = y;
+            console.log(initial.boxWidth, initial.boxHeight);
+        }
+
+        // 获取当前出发点
+        function getPoint(x, y, direction) {
+            if (x <= initial.boxWidth && y <= initial.boxHeight) {
+                initial.startX = x;
+                initial.startY = y;
+                initial.defaultDir = direction;
+                console.log(initial.startX, initial.startY, initial.defaultDir)
+            } else {
+                alert('请输入有效方位');
+            }
+        }
+
+
+
+        // 计算目的地
+        function setPoint(str) {
+            const pointText = str.split('');
+            for (i = 0; i < pointText.length; i++) {
+                if (pointText[i].toLowerCase() == 'm') {
+                    console.log(initial.defaultDir)
+                    switch (initial.defaultDir) {
+                        case 'n':
+                            // curX += 0;
+                            initial.startY += 1;
+                            break;
+                        case 's':
+                            // curX += 0;
+                            initial.startY -= 1;
+                            break;
+                        case 'w':
+                            initial.startX -= 1;
+                            break;
+                        // curY += 0;
+                        case 'e':
+                            initial.startX += 1;
+                            break;
+                        // curY -= 0;
+                    }
+                    if (initial.startX > initial.boxWidth || initial.startY > initial.boxHeight) {
+                        alert('RIP.')
+                    }
+                } else {
+                    initial.defaultDir = dir[initial.defaultDir][pointText[i]]
+                }
+            }
+            console.log('this is ', initial.defaultDir, 'end', initial.startX, initial.startY)
+            // console.log(pointText, str)
+        }
+
+        getPosition(5, 5);
+        getPoint(1, 2, N);
+        setPoint('LMLMLMLMM') // 1 3 N
+
+        getPoint(3, 3, E);
+        setPoint('MMRMMRMRRM'); // 5 1 E
+
+        getPoint(4, 4, N);
+        setPoint('MMM'); // RIP
+    </script>
+</body>
+
+</html>
