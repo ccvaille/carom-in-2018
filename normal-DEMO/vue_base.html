@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>vue_base(20180611)</title>
+    <script>
+        Vue.component('todo-item', {
+            props: ['item'],
+            template: '<li>{{ item.text }}</li>'
+        })
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <h1>Vue</h1>
+            <div>
+                <h2>声明式渲染</h2>
+                Hello, {{ name }}, {{ message }}</div>
+            <div v-bind:title="titletext">
+                <h2>
+                    v-bind: title 指令
+                </h2>
+                try to hover
+            </div>
+            <div>
+                <h2>
+                    v-if 条件
+                </h2>
+                <p v-if="seen">if if if if if if </p>
+            </div>
+            <div>
+                <h2>v-for 循环</h2>
+                <ol>
+                    <li v-for="todo in todos">
+                        {{ todo.text }}
+                    </li>
+                </ol>
+            </div>
+            <div>
+                <h2>v-on 处理用户输入</h2>
+                <p>{{ newMessage }}</p>
+                <button v-on:click="reverseMessage">reverse</button>
+            </div>
+            <div>
+                <h2>v-model 双向绑定</h2>
+                <p>{{ newMessage1 }}</p>
+                <input v-model="newMessage1">
+            </div>
+            <div>
+                <h2>component</h2>
+                <ol>
+                    <todo-item
+                        v-for="item in groceryList"
+                        v-bind:item="item"
+                        v-bind:key="item.id"
+                    ></todo-item>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                name: "coolfe",
+                message: "This is Vue world;",
+                newMessage: "This is Vue world;",
+                newMessage1: "Try to type some text.",
+                titletext: "this is title",
+                seen: true,
+                todos: [
+                    { text: 'learn js'},
+                    { text: 'learn vue'},
+                    { text: 'try todo list'},
+                ],
+                groceryList: [
+                    { id: 0, text: '蔬菜' },
+                    { id: 1, text: '奶酪' },
+                    { id: 2, text: '随便其它什么人吃的东西' }
+                ]
+            },
+            methods: {
+                reverseMessage: function(){
+                    this.newMessage = this.newMessage.split('').reverse().join('');
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
