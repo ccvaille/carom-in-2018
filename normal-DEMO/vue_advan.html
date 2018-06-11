@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>vue_advan(20180611)</title>
+</head>
+<body>
+    <div id="app">
+        <h1>
+            created 生命周期
+        </h1>
+        <div>
+            {{ a }}            
+        </div>
+        <h1>v-html 输出真正的 html</h1>
+        <div v-html="rawHtml">
+        </div>
+        <h1>缩写</h1>
+        <p>v-bind:href="url  => :href="url" </p>
+        
+        <p>v-on:click="doSomething" => @click="doSomething"</p>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                a: 1,
+                rawHtml: '<div><p>some text</p></div>'
+            },
+            created: function() {
+                console.log('a is ' + this.a)
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+</html>
