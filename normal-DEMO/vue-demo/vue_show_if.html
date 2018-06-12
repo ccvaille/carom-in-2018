@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>vue_show_if(20180612)</title>
+</head>
+<body>
+    <div id="app">
+        <h1>v-if</h1>
+        <div>
+            <template v-if="ok">
+                <p>ok 的话会显示这句话哦。</p>
+            </template>
+            <template v-else>
+                <p>这是不 ok 的。</p>
+            </template>
+        </div>
+        <h1>v-show</h1>
+        <div>
+            <p v-show="hidden">
+                hidden 没内容
+            </p>
+            <p v-show="show">
+                show 展示出来
+            </p>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                ok: false,
+                hidden: false,
+                show: true,
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>vue_event(20180612)</title>
+</head>
+
+<body>
+    <div id="event">
+        <h1>counter</h1>
+        <button v-on:click="counter += 1">add 1</button>
+        {{ counter }}
+        <h1>print</h1>
+        <button v-on:click="print">print</button>
+        {{ printText }}
+        <h1>事件修饰符</h1>
+        <p>
+            阻止单击事件继续传播: v-on:click.stop="doThis"
+        </p>
+        <p>
+            提交事件不再重载页面: v-on:submit.prevent="onSubmit</p>
+        <p>
+            修饰符可以串联:v-on:click.stop.prevent="doThat"</p>
+        <p>
+            只有修饰符:v-on:submit.prevent</p>
+        <p>
+            添加事件监听器时使用事件捕获模式,即元素自身触发的事件先在此处处理，然后才交由内部元素进行处理:   v-on:click.capture="doThis"
+        </p>
+        <p>
+            只当在 event.target 是当前元素自身时触发处理函数, 即事件不是从内部元素触发的 v-on:click.self="doThat"
+        </p>
+        </p>
+    </div>
+    <script>
+
+        new Vue({
+            el: '#event',
+            data: {
+                counter: 0,
+                printText: '',
+                name: 'coolfe'
+            },
+            methods: {
+                print: function () {
+                    this.printText = 'hello ' + this.name;
+                }
+            }
+        })</script>
+</body>
+
+</html>

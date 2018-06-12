@@ -7,12 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <title>vue_base(20180611)</title>
-    <script>
-        Vue.component('todo-item', {
-            props: ['item'],
-            template: '<li>{{ item.text }}</li>'
-        })
-    </script>
 </head>
 
 <body>
@@ -65,6 +59,11 @@
         </div>
     </div>
     <script>
+        Vue.component('todo-item', {
+                props: ['item'],
+                template: '<li>{{ item.text }}</li>'
+            })  
+        
         new Vue({
             el: '#app',
             data: {

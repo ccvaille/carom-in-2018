@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>vue_style(20180612)</title>
+</head>
+<body>
+    <div id="app">
+        <h1>动态切 内联 class </h1>
+        <div class="inline_class" v-bind:class="{active: isActive, 'text-danger': hasError }">isActive: true,
+                hasError: false,</div>
+        <h1>动态切 class object</h1>
+        <div class="object_class" v-bind:class="classObject">active: true, 'text-dange': false,</div>
+        <h1>computed 计算属性</h1>
+        <div class="computed_class" v-bind:class="computedObject">isActive: true, error: null,</div>
+        <h1>数组语法</h1>
+        <div class="array_class" v-bind:class="[activeClass, errorClass]">activeClass: 'active', errorClass: 'text-danger',</div>
+        <div class="array_class" v-bind:class="[{ active: isActive }, errorClass]">{ active: isActive }, errorClass,</div>
+        <h1>三元表达式</h1>
+        <div class="array_class" v-bind:class="[isActive ? activeClass : '', errorClass]">isActive ? activeClass : '', errorClass,</div>
+        <h1>内联 style</h1>
+        <div class="inline_style" v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">activeColor: 'red', fontSize: 28,</div>
+        <h1>内联对象 style</h1>
+        <div class="inline_style" v-bind:style="styleObject">color: 'red', fontSize: '13px'</div>
+        <h1>内联数组 style</h1>
+        <div class="inline_style" v-bind:style="[baseStyle]">baseStyle</div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                isActive: true,
+                hasError: false,
+                error: null,
+                activeColor: 'red',
+                fontSize: 28,
+                classObject: {
+                    active: true,
+                    'text-dange': false,
+                },
+                activeClass: 'active',
+                errorClass: 'text-danger',
+                styleObject: {
+                    color: 'red',
+                    fontSize: '13px'
+                },
+                baseStyle: {
+                    color: 'blue',
+                    fontSize: '13px'
+                }
+            },
+            computed: {
+                computedObject:function(){
+                    return {
+                        active: this.isActive && !this.error,
+                        'text-danger': this.error && this.error.type === 'fatal'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
