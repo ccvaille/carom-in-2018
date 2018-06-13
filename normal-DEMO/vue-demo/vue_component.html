@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>vue_component(20180613)</title>
+</head>
+
+<body>
+    <div id="component">
+        <h1>template</h1>
+        <vue-component></vue-component>
+        <h1>props</h1>
+        <blog-post title="My journey with Vue"></blog-post>
+        <blog-post title="Blogging with Vue"></blog-post>
+        <blog-post title="Why Vue is so fun"></blog-post>
+        <h1>data</h1>
+        <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:title="post.title"></blog-post>
+        <h1>refactor props</h1>
+        <h2>emit 自定义事件</h2>
+        <div :style="{ fontSize: postFontSize + 'em'}">
+            <blog-post-refactor v-for="post in posts" v-bind:key="post.title" v-bind:post="post" v-on:enlarge-text="postFontSize += 0.1"></blog-post-refactor>
+        </div>
+        <h1>slot</h1>
+        <alert-box>
+            Something bad happened.
+        </alert-box>
+        <h1>动态组件</h1>
+        <button v-for="tab in tabs" v-bind:key="tab" v-on:click="currentTab = tab">{{ tab }}</button>
+        <component v-bind:is="currentTabComponet"></component>
+    </div>
+    <script>
+        Vue.component('tab-home', {
+            template: '<div>Home component</div>'
+        });
+        Vue.component('tab-posts', {
+            template: '<div>Posts component</div>'
+        });
+        Vue.component('tab-archive', {
+            template: '<div>Archive component</div>'
+        });
+        Vue.component('alert-box', {
+            template: `<div class="demo-alert-box">
+                <strong>Error!</strong>
+                <slot></slot>
+            </div>`
+        });
+        Vue.component('vue-component', {
+            data: function () {
+                return {
+                    count: 0
+                }
+            },
+            template: '<button v-on:click="count ++">add {{ count }}</button>'
+        });
+        Vue.component('blog-post-refactor', {
+            props: ['post'],
+            template: `
+                <div>
+                    <h5>{{ post.title }}</h5>
+                    <button v-on:click="$emit('enlarge-text')">
+                        Enlarge text
+                    </button>
+                    <div v-html="post.content"></div>
+                </div>
+            `
+        });
+        Vue.component('blog-post', {
+            props: ['title'],
+            template: '<h3>{{ title }}</h3>'
+        });
+        new Vue({
+            el: '#component',
+            data: {
+                currentTab: 'home',
+                tabs: ['home', 'posts', 'archive'],
+                posts: [
+                    { id: 1, title: 'My journey with Vue' },
+                    { id: 2, title: 'Blogging with Vue' },
+                    { id: 3, title: 'Why Vue is so fun' },
+                ],
+                postFontSize: 1
+            },
+            computed: {
+                currentTabComponet: function () {
+                    return 'tab-' + this.currentTab.toLowerCase();
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
