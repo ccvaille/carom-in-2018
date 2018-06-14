@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://code.jquery.com/jquery-1.4.1.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <button id="sad">上班</button>
+    <button id="happy">下班</button>
+    <span id="time"></span>
+    <script>
+        $(function(){
+            var start = 
+            $('#sad').click(function(){
+                var d = new Date();
+                 sD = d.getHours();
+                 sM = d.getMinutes();
+                 sS = d.getSeconds();
+                console.log('sad',sD, sM, sS)
+            })
+            $('#happy').click(function () {
+                var d = new Date();
+                 eD = d.getHours();
+                 eM = d.getMinutes();
+                 eS = d.getSeconds();
+                console.log('happy', eD, eM, eS);
+            })
+
+        })
+    </script>
+</body>
+</html>
