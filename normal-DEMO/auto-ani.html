@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>auto-ani(20180621)</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 90%;
+            color: #000;
+            height: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        ul {
+            position: absolute;
+            top: 0;
+            left: 10px;
+            animation: ani infinite ease-in-out 15s;
+        }
+
+        li {
+            height: 30px;
+            line-height: 30px;
+        }
+
+        @keyframes ani {
+            0% {
+                top: -0px;
+            }
+            10% {
+                top: -30px;
+            }
+            20% {
+                top: -60px;
+            }
+            30% {
+                top: -90px;
+            }
+            40% {
+                top: -120px;
+            }
+            50% {
+                top: -150px;
+            }
+            60% {
+                top: -180px;
+            }
+            70% {
+                top: -210px;
+            }
+            80% {
+                top: -240px;
+            }
+            90% {
+                top: -270px;
+            }
+            100% {
+                top: -300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul>
+            <li>用户131****6548 完成注册 领取了178元</li>
+            <li>用户180****0789 完成开户 领取了368元</li>
+            <li>用户173****1397 完成模拟 领取了298元</li>
+            <li>用户138****9781 完成注册 领取了168元</li>
+            <li>用户132****5423 完成开户 领取了368元</li>
+            <li>用户135****5463 完成模拟 领取了238元</li>
+            <li>用户152****5139 完成注册 领取了168元</li>
+            <li>用户134****7128 首次交易 领取了518元</li>
+            <li>用户151****4868 完成注册 领取了138元</li>
+            <li>用户181****3147 完成开户 领取了318元</li>
+        </ul>
+    </div>
+</body>
+
+</html>
