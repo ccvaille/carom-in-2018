@@ -1,0 +1,30 @@
+const Vue = require('vue');
+const server = require('express')()
+const renderer = require('vue-server-renderer').createRenderrer();
+
+server.get('*', (req, res) => {
+    const app = new Vue({
+        data: {
+            url: req.url
+        },
+        template: `<div>访问的 Url 是 {{ url }} </div>`
+    })
+
+    renderer.renderToString(app, (err, html) => {
+        if(err) {
+            res.status(500).end('Internal Server Error')
+            return
+        }
+        res.end(`
+            <!DOCTYPE html>
+            <html>
+                <head><title>hello</title></head>
+                <body>
+                    ${html}
+                </body>
+            </html>
+        `)
+    })
+})
+
+server.listen(8080);
