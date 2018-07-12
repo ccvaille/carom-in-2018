@@ -1,0 +1,3 @@
+[submodule "carom-in-2018"]
+	path = carom-in-2018
+	url = git@git.coding.net:coolfe/carom-in-2018.git
