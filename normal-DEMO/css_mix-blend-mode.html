@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css_mix_blend_mode(20180713)</title>
+    <style>
+        .blending span {
+            mix-blend-mode: multiply;
+            font-size: 7rem;
+            font-weight: 700;
+            letter-spacing: -1.8rem;
+        }
+
+        span:nth-child(1) {
+            color: #AB1795;
+        }
+
+        span:nth-child(2) {
+            color: #167CFB;
+        }
+
+        span:nth-child(3) {
+            color: #37D86E;
+        }
+
+        span:nth-child(4) {
+            color: #DA7C5F;
+        }
+
+        span:nth-child(5) {
+            color: #B020AD;
+        }
+
+        span:nth-child(6) {
+            color: #1685FB;
+        }
+
+        span:nth-child(7) {
+            color: #D4FEA1;
+        }
+
+        header {
+            width: 100%;
+            height: 450px;
+            background: url("./assets/images/wisconsin-farmland-3.jpg")
+        }
+
+        header h1 {
+            font-size: 130px;
+            color: red;
+            mix-blend-mode: screen;
+            padding-top: 50px;
+            margin: 0;
+            line-height: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Nice blending way:</h2>
+    <h1 class="blending">
+        <span>h</span>
+        <span>u</span>
+        <span>n</span>
+        <span>g</span>
+        <span>r</span>
+        <span>y</span>
+        <span>?</span>
+    </h1>
+    <header>
+        <h1>Hello world!</h1>
+    </header>
+</body>
+
+</html>
