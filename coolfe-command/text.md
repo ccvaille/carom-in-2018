@@ -40,6 +40,7 @@
 - wc -c: 字节数 
 - wc -l: 统计行数
 - wc -w: 统计字数
+
 # |
 - `|`: redirects standard output of a command to another command.
 - 管道，连接多个命令
