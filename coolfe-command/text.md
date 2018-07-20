@@ -35,6 +35,12 @@
 - `>>`:redirects standard output of a command to a file, appending new content to old content.
 - `<`: redirects standard input to a command.
 
+
+# echo && cat 的区别
+```
+echo 输出一个变量
+cat 输出一个文件里面的内容
+```
 # wc:Word Count
 - cat filename | wc: 统计指定文件中的字节数、字数、行数
 - wc -c: 字节数 
@@ -67,3 +73,30 @@
 - sed s filename: 把文件里的 s 输出来
 
 ============
+# nano
+- nano ~/.bash_profile: 用字符终端的文本编辑器打开文件
+- ctrl + O: 保存
+- ctrl + X: 关闭
+
+# source
+- source ~/.bash_profile: 激活新的文件
+
+# alias: 设置指令的别名
+- alias pd="pwd"
+
+# export: 定义变量
+- export USER="Jane Doe": 定义变量
+- export PS1=">>": default command prompt from $ to >>
+- echo $HOME: HOME 变量是一个环境变量，它显示主目录的路径
+- echo $PATH: PATH 变量是一个环境变量，它用于存储由冒号分隔的目录列表
+
+# bin
+- /bin/pwd: 存在 bin 文件夹的命令
+
+#env: environment
+- returns a list of the environment variables for the current user
+- env | grep PATH : search for the value of ther variable PATH and outputs it to the terminal
+
+#less: 对文件或其他输出进行分页显示的工具
+- less filename
+- q: 退出显示
