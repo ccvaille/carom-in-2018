@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>bottom-footer(20180720)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            height: 100%;
+            color: #fff;
+        }
+        body {
+            position: relative;
+            min-height: 100%;
+            /* box-sizing: border-box; */
+            /* padding-bottom: 100px; */
+            background: #eee;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: pink;
+            height: 70px;
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: blue;
+        }
+        .view {
+            padding-top: 90px;
+            background: #000;
+        }
+        .box {
+            padding-bottom: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <nav>nav</nav>
+        <div class="view">
+            <div class="">some text some text</div>
+            <footer>footer</footer>
+        </div>
+    </div>
+</body>
+</html>
