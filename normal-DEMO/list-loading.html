@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>list-loading(20180720)</title>
+    <style>
+        .loading {
+            position: relative;
+            font-size: 0;
+            overflow: hidden;
+            background: #f6f6f6;
+        }
+        .bg {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, #f6f6f6 0, #ebebeb 20%, #f6f6f6 40%, #f6f6f6);
+            /* background: linear-gradient(90deg, #882525 0, #2d1cb7 20%, #20ab1d 40%, #98902b); */
+            animation:  linear-bg 1s linear 1s infinite forwards;
+        }
+        .img {
+            position: relative;
+            z-index: 2;
+        }
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        @keyframes linear-bg {
+            0% {
+                transform: translateX(-56%);
+            }
+
+            to {
+                transform: translateX(56%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="loading">
+            <div class="bg"></div>
+            <div class="img">
+                <img src="./assets/images/loading.svg" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
