@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>404-ani(20180726)</title>
+    <style>
+        body {
+            background: #000;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            transform: rotateX(-30deg) rotateY(-33deg);
+            transform-style: preserve-3d;
+        }
+
+        .cube {
+            margin: 100px;
+            /* perspective: 600px; */
+            position: relative;
+            transform-style: preserve-3d;
+            width: 100%;
+            height: 100%;
+            animation: cube-ani 2000ms cubic-bezier(1, 0.01, 1, 1) infinite;
+        }
+
+        @keyframes cube-ani {
+            0% {
+                -webkit-transform: rotateZ(0deg);
+                transform: rotateZ(0deg);
+            }
+            85% {
+                -webkit-transform: rotateZ(90deg);
+                transform: rotateZ(90deg);
+            }
+            87% {
+                -webkit-transform: rotateZ(88deg);
+                transform: rotateZ(88deg);
+            }
+            90% {
+                -webkit-transform: rotateZ(90deg);
+                transform: rotateZ(90deg);
+            }
+            100% {
+                -webkit-transform: rotateZ(90deg);
+                transform: rotateZ(90deg);
+            }
+        }
+
+        .wall {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid #fafafa;
+            /* opacity: 0.7; */
+        }
+
+        .wall.front {
+            /* background: pink; */
+            transform: rotateY(0deg) translateZ(100px);
+        }
+
+        .wall.back {
+            /* background: yellow; */
+            transform: rotateY(180deg) translateZ(100px);
+        }
+
+        .wall.left {
+            /* background: red; */
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+
+        .wall.right {
+            /* background: blue; */
+            transform: rotateY(90deg) translateZ(100px);
+        }
+
+        .wall.top {
+            /* background: brown; */
+            transform: rotateX(90deg) translateZ(100px);
+        }
+
+        .wall.bottom {
+            /* background: palegreen; */
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="cube">
+            <div class="wall front">FRONT</div>
+            <div class="wall back">BACK</div>
+            <div class="wall top">TOP</div>
+            <div class="wall bottom">BOTTOM</div>
+            <div class="wall right">RIGHT</div>
+            <div class="wall left">LEFT</div>
+        </div>
+    </div>
+</body>
+
+</html>
