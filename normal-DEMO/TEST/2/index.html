@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test2(20180804)</title>
+    <style>
+        li.pass {
+            color: green;
+        }
+        li.fail {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function assert(value, desc) {
+            var li = document.createElement('li');
+            li.className = value ? "pass" : "fail";
+            li.appendChild(document.createTextNode(desc));
+            document.getElementById('results').appendChild(li);
+        }
+        window.onload = function(){
+            assert(true, "thie test suite is runing");
+            assert(false, "fail");
+        }
+    </script>
+    <ul id="results"></ul>
+</body>
+</html>
