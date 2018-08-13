@@ -9,6 +9,13 @@ module.exports = {
     },
     module: {
         rules: [
+            // {
+            //     test: /\.js | \.jsx$/,
+            //     include: [
+            //         path.resolve(__dirname, 'src'),
+            //     ],
+            //     use: 'babel-loader',
+            // },
             {
                 test: /\.jsx?/,
                 include: [
@@ -17,7 +24,7 @@ module.exports = {
                 use: 'babel-loader'
             },
             {
-                test: /\.(png|jpg|gif)$/,
+                test: /.*\.(gif|png|jpe?g|svg|webp)$/i,
                 use: [
                     {
                         loader:'file-loader'
