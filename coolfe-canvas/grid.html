@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>grid(20180816)</title>
+</head>
+<body>
+    <canvas id="myCanvas"></canvas>
+    <script>
+        function canvasApp() {
+            var canvas = document.getElementById('myCanvas');
+            if (!canvas || !canvas.getContext) {
+                return;
+            }
+            var ctx = canvas.getContext('2d');
+            function drawScreen() {
+                var dx = 50,
+                    dy = 50,
+                    x = 0,
+                    y = 0,
+                    w = canvas.width,
+                    h = canvas.height;
+                    xy = 10;
+                // ctx.lineWidth = 1;
+                
+                // horizontal
+                while(y < h) {
+                    y = y + dy;
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(w, y);
+                    ctx.stroke();
+                    ctx.fillText(xy, x, y - 5);
+                    xy += 10;
+                }
+                // vertical
+                y = 0;
+                xy = 10;
+                while(x < w) {
+                    x = x + dx;
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(x, h);
+                    ctx.stroke();
+                    ctx.fillText(xy, x+5, 10);
+                    xy += 10;
+                }
+            }
+            drawScreen();
+        }
+
+        window.addEventListener('load', canvasApp, false);
+    </script>
+</body>
+</html>
