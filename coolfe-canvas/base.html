@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>base(20180816)</title>
+    <style>
+        canvas {
+            /* border: 1px solid pink; */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas"></canvas>
+    <script>
+        function canvasApp() {
+            var canvas =  document.getElementById('myCanvas');
+            if(!canvas || !canvas.getContext) {
+                return;
+            }
+            var ctx = canvas.getContext('2d');
+            function drawScreen() {
+                ctx.fillStyle = "pink";
+                ctx.fillRect(15,15,200,200);
+            }
+            drawScreen();
+        }
+        
+        window.addEventListener('load', canvasApp, false);
+    </script>
+</body>
+</html>
