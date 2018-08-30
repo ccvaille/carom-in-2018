@@ -22,6 +22,8 @@ var coolfe = new Vue({
     two: {
       obj,
       a: 1,
+      rawHtml: '<span style="color: blue;">blue text</span>',
+      computedMessage: 'Hello'
     }
   },
   created() {
@@ -47,5 +49,11 @@ var coolfe = new Vue({
   },
   created: function () {
     console.log('a is: ' + this.two.a)
+  },
+  // 计算属性
+  computed: {
+    reversedComputedMessage: function() {
+      return this.two.computedMessage.split('').reverse().join('');
+    }
   }
 });
