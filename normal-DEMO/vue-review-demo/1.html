@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1(20180829)</title>
+</head>
+<body>
+    <div id="app" >
+        <h3>v-bind:title</h3>
+        <p :title="one.time">
+            {{one.message}}
+        </p>
+        <h3>v-for</h3>
+        <ul>
+            <li v-for="item in one.products">{{ item.name }}</li>
+        </ul>
+        <h3>v-on:click</h3>
+        {{ one.reverseText }}
+        <button @click="reverseText">逆转消息</button>
+        <h3>v-model</h3>
+        <p>
+            {{ one.modelText }}
+        </p>
+        <input type="text" v-model="one.modelText">
+        <h3>component</h3>
+        <ol>
+            <product-item
+                v-for="item in one.products"
+                :key="item.id"
+                :product="item"
+            >
+            </product-item>
+        </ol>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
