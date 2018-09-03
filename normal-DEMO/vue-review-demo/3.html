@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3(20180903)</title>
+    <style>
+        .active {
+            background: black;
+            color: #fff;
+        }
+        .text-danger {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h3>class</h3>
+        <h4>对象语法</h4>
+        <p :class="{ active: isActive, 'text-danger': hasError }">add class in Object inline class</p>
+        <p :class="classObject">add class in classObject</p>
+        <h4>数组语法</h4>
+        <p :class="[arrayActive,arrayError]">add class in Array inline</p>
+        <h3>style</h3>
+        <p :style="{color: styleColor, fontSize: styleFontSize }">add style in inline style</p>
+        <h3>common input</h3>
+        <template v-if="loginType == 'username'">
+            <label for=""> Username</label>
+            <input type="text" placeholder="Enter your username">
+        </template>
+        <template v-else>
+            <label for="">Email</label>
+            <input type="text" placeholder="Enter your Email address">
+        </template>
+        <button @click="toggle">Toggle login type</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                isActive: true,
+                hasError: true,
+                classObject: {
+                    active: true,
+                    'text-danger': true
+                },
+                arrayActive: 'active',
+                arrayError: 'text-danger',
+                styleColor: 'blue',
+                styleFontSize: '20px',
+                loginType: 'username'
+            },
+            methods: {
+                toggle: function() {
+                    
+                    this.loginType = this.loginType == 'username' ? 'email' : 'username';
+                    console.log('aa', this.loginType, this.loginType == 'username')
+                    // this.loginType = !this.loginType;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

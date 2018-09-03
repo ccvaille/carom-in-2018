@@ -24,6 +24,10 @@ var coolfe = new Vue({
       a: 1,
       rawHtml: '<span style="color: blue;">blue text</span>',
       computedMessage: 'Hello'
+    },
+    three: {
+      isActive: true,
+      hasError: true
     }
   },
   created() {
