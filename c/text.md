@@ -35,3 +35,10 @@ a = b = c = 0;
 
 a = (b = ( c = 0));
 ```
+- **终端内输入 `EOF`**
+```
+windows 下输入 Ctrl + Z + Enter 
+
+Linux 和 MAC 下输入 Ctrl + D + Enter
+```
+- 函数内 `return 0` 表示正常终止，非零表示出现异常情况或出错结束条件
