@@ -37,6 +37,16 @@
             <input type="text" placeholder="Enter your Email address">
         </template>
         <button @click="toggle">Toggle login type</button>
+        <h3>special input</h3>
+        <template v-if="loginType1 == 'username1'">
+            <label for=""> Username</label>
+            <input type="text" placeholder="Enter your username" key="username-input">
+        </template>
+        <template v-else>
+            <label for="">Email</label>
+            <input type="text" placeholder="Enter your Email address" key="email-input">
+        </template>
+        <button @click="toggle1">Toggle login type</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script>
@@ -53,14 +63,15 @@
                 arrayError: 'text-danger',
                 styleColor: 'blue',
                 styleFontSize: '20px',
-                loginType: 'username'
+                loginType: 'username',
+                loginType1: 'username1'
             },
             methods: {
                 toggle: function() {
-                    
                     this.loginType = this.loginType == 'username' ? 'email' : 'username';
-                    console.log('aa', this.loginType, this.loginType == 'username')
-                    // this.loginType = !this.loginType;
+                },
+                toggle1: function () {
+                    this.loginType1 = this.loginType1 == 'username1' ? 'email1' : 'username1';
                 }
             }
         })

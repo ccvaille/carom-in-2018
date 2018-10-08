@@ -30,7 +30,7 @@ var coolfe = new Vue({
       hasError: true
     }
   },
-  created() {
+  created() {  
     // 1.html
     fetch("https://api.myjson.com/bins/74l63")
       .then(response => {
