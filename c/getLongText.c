@@ -41,6 +41,7 @@ int getlines(char s[], int lim) {
     return i;
 }
 
+// 显性说明不返回任何值
 void copy(char to[], char from[]) {
     int i;
     i = 0;
