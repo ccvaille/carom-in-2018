@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4(20181027)</title>
+</head>
+
+<body>
+    <div id="app">
+        <h3>v-for</h3>
+        <ul>
+            <li v-for="(item, index) in items">array - {{item.message}} - {{index}}</li>
+        </ul>
+        <ul>
+            <li v-for="(value, key, index) in object">object - {{value}} - {{key}} - {{index}}</li>
+        </ul>
+        <h3>Todo</h3>
+        <span>Add to do:</span>
+        <input type="text" placeholder="E.g. Feed the cat" v-model="newTodoText">
+        <button @click="addTodo">添加 todo</button>
+        <ul>
+            <todo-item v-for="(item,index) in todos" :title="item.title" :key="item.id" @remove="todos.splice(index, 1)"></todo-item>
+        </ul>
+        <h3>访问原生事件</h3>
+        <a href="https://www.baidu.com" @click="warn('Form cannot be submitted yet.', $event)">
+            $event 阻止了默认行为，不会跳到链接地址
+        </a>
+        <h3>事件修饰符</h3>
+        <a v-on:click.stop="doThis">阻止单击事件继续传播</a>
+        <form @click.submmit.prevent="onSubmit">提交事件不再重载页面</form>
+        <a @click.stop.prevent="doThis">阻止单击事件继续传播</a>
+        <h3>按键修饰符</h3>
+        <input type="text" @keyup.enter="onEnter" placeholder="try to enter">
+        <input @keyup.67="onPressC" placeholder="try to press c">
+        <h3>v-model 双向数据绑定</h3>
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{checked}}</label>
+        <br>
+        <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="checkedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+        <label for="mike">Mike</label>
+        <br>
+        <span>Checked name: {{ checkedNames }}</span>
+        <br>
+        <input type="radio" v-model="picked" value="a"> {{picked}}
+        <br>
+        <select v-model="selected">
+            <option value="abc">ABC</option>
+            <option value="111">a</option>
+            <option value="222">b</option>
+        </select> {{selected}}
+        <h3>修饰符</h3>
+        lazy <input type="text" v-model.lazy="msg" placeholder="only onChange"> {{msg}}
+        <br> number
+        <input type="text" v-model.number="age" placeholder="keep num type"> {{age}}
+        <br> trim
+        <input type="text" v-model.trim="text" placeholder="trim">{{text}}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script>
+        Vue.component('todo-item', {
+            template: '<li>{{title}}<button @click="$emit(\'remove\')">remove</button></li>',
+            props: ['title']
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                newTodoText: '',
+                nextTodoId: 4,
+                items: [{
+                    message: 'Foo'
+                }, {
+                    message: 'Bar'
+                }],
+                object: {
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    age: 30
+                },
+                todos: [{
+                    id: 1,
+                    title: 'Do the dishes',
+                }, {
+                    id: 2,
+                    title: 'Take out the trash',
+                }, {
+                    id: 3,
+                    title: 'Mow the lawn'
+                }],
+                checked: false,
+                checkedNames: [],
+                picked: 'base text',
+                selected: '',
+                msg: '',
+                age: '36',
+                text: '  fjdksa  '
+            },
+            methods: {
+                addTodo() {
+                    this.todos.push({
+                        id: this.nextTodoId++,
+                        title: this.newTodoText
+                    })
+                    this.newTodoText = ''
+                },
+                warn(message, event) {
+                    if (event) {
+                        event.preventDefault();
+                    }
+                    alert(message);
+                },
+                doThis() {
+                    console.log('doThis');
+                },
+                onSubmit() {
+                    console.log('onSubmit');
+                },
+                onEnter() {
+                    alert('你按了 enter！')
+                },
+                onPressC() {
+                    alert('你按了 c！');
+                }
+            }
+        })
+
+        Vue.set(vm.items, 2, {
+            message: 'Vue set 方法添加'
+        })
+        vm.$set(vm.items, 3, {
+            message: '实例 $set 添加'
+        })
+        vm.$set(vm.object, 'text', '实例 $set 添加')
+    </script>
+</body>
+
+</html>
